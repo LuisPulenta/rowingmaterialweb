@@ -5,9 +5,9 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rowingmaterialweb.Backend", "rowingmaterialweb.Backend\rowingmaterialweb.Backend.csproj", "{C4048CB1-266C-498D-A363-AD83E5826EA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rowingmaterialweb.Frontend", "rowingmaterialweb.Fronend\rowingmaterialweb.Frontend.csproj", "{9245C9FC-D936-4276-8968-F31DC79D7A9D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rowingmaterialweb.Shared", "rowingmaterialweb.Shared\rowingmaterialweb.Shared.csproj", "{66059053-28F4-4F21-8A7D-F6195F6CDF6C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rowingmaterialweb.Frontend", "rowingmaterialweb.Frontend\rowingmaterialweb.Frontend.csproj", "{7805D990-96C8-4765-A40A-2538624854C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,14 @@ Global
 		{C4048CB1-266C-498D-A363-AD83E5826EA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4048CB1-266C-498D-A363-AD83E5826EA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4048CB1-266C-498D-A363-AD83E5826EA8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9245C9FC-D936-4276-8968-F31DC79D7A9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9245C9FC-D936-4276-8968-F31DC79D7A9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9245C9FC-D936-4276-8968-F31DC79D7A9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9245C9FC-D936-4276-8968-F31DC79D7A9D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{66059053-28F4-4F21-8A7D-F6195F6CDF6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{66059053-28F4-4F21-8A7D-F6195F6CDF6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66059053-28F4-4F21-8A7D-F6195F6CDF6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66059053-28F4-4F21-8A7D-F6195F6CDF6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7805D990-96C8-4765-A40A-2538624854C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7805D990-96C8-4765-A40A-2538624854C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7805D990-96C8-4765-A40A-2538624854C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7805D990-96C8-4765-A40A-2538624854C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
