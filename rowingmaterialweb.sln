@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rowingmaterialweb.Backend", "rowingmaterialweb.Backend\rowingmaterialweb.Backend.csproj", "{C4048CB1-266C-498D-A363-AD83E5826EA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rowingmaterialweb.Backend", "rowingmaterialweb.Backend\rowingmaterialweb.Backend.csproj", "{C4048CB1-266C-498D-A363-AD83E5826EA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rowingmaterialweb.Shared", "rowingmaterialweb.Shared\rowingmaterialweb.Shared.csproj", "{66059053-28F4-4F21-8A7D-F6195F6CDF6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rowingmaterialweb.Shared", "rowingmaterialweb.Shared\rowingmaterialweb.Shared.csproj", "{66059053-28F4-4F21-8A7D-F6195F6CDF6C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rowingmaterialweb.Frontend", "rowingmaterialweb.Frontend\rowingmaterialweb.Frontend.csproj", "{7805D990-96C8-4765-A40A-2538624854C6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rowingmaterialweb.Frontend", "rowingmaterialweb.Frontend\rowingmaterialweb.Frontend.csproj", "{3FC38146-7EED-47F2-A86D-2A2D14449B1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{66059053-28F4-4F21-8A7D-F6195F6CDF6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66059053-28F4-4F21-8A7D-F6195F6CDF6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66059053-28F4-4F21-8A7D-F6195F6CDF6C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7805D990-96C8-4765-A40A-2538624854C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7805D990-96C8-4765-A40A-2538624854C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7805D990-96C8-4765-A40A-2538624854C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7805D990-96C8-4765-A40A-2538624854C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FC38146-7EED-47F2-A86D-2A2D14449B1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FC38146-7EED-47F2-A86D-2A2D14449B1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FC38146-7EED-47F2-A86D-2A2D14449B1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FC38146-7EED-47F2-A86D-2A2D14449B1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
