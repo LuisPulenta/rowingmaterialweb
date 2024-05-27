@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rowingmaterialweb.Backend",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rowingmaterialweb.Shared", "rowingmaterialweb.Shared\rowingmaterialweb.Shared.csproj", "{66059053-28F4-4F21-8A7D-F6195F6CDF6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rowingmaterialweb.Frontend", "rowingmaterialweb.Frontend\rowingmaterialweb.Frontend.csproj", "{3FC38146-7EED-47F2-A86D-2A2D14449B1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rowingmaterialweb.Frontend", "rowingmaterialweb.Frontend\rowingmaterialweb.Frontend.csproj", "{3FC38146-7EED-47F2-A86D-2A2D14449B1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

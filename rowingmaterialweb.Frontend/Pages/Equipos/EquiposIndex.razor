@@ -1,0 +1,226 @@
+﻿@page "/equipos"
+@inject IRepository repository
+@inject NavigationManager navigationManager
+@inject SweetAlertService swal
+@inject HttpClient Http
+@inject IJSRuntime JS
+
+@if (loading)
+{
+    <Spinner />
+}
+else
+{
+    <div class="container">
+        <div class="row">
+            <div class="offset-1 col-10">    
+                <div class="card">
+                    <div class="card-header">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                            </svg>
+                             Equipos
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: flex; justify-content:space-between; align-items: center;">
+                            <div style="display: flex;  align-items: center;">
+                                <div>
+                                    <input style="width: 400px;" type="text" class="form-control" id="titulo" placeholder="Buscar Cliente..." @bind-value="Filter" />
+                                </div>
+                                <div class="mx-1">
+                                    <button type="button" class="btn btn-outline-primary" @onclick="ApplyFilterAsync"><i class="oi oi-layers" /> Filtrar</button>
+                                    <button type="button" class="btn btn-outline-danger" @onclick="CleanFilterAsync"><i class="oi oi-ban" /> Limpiar</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <GenericList MyList="Customers">
+                    <Body>
+                        <table class="table table-sm table-info table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Fecha</th>
+                                    <th>Fecha Instalación</th>
+                                    <th>Pedido</th>
+                                    <th>Documento</th>
+                                    <th>Cliente</th>
+                                    <th>Domicilio</th>
+                                    <th>Entre Calles</th>
+                                    <th>Tipo Instalación</th>
+                                    <th style="width:60px"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var equipo in Equipos!)
+                                {
+                                    <tr>
+                                        <td>
+                                            @equipo.IDRegistro
+                                        </td>
+                                         <td>
+                                            @equipo.Fecha.ToString("dd-MMM-yyyy")
+                                        </td>
+                                        <td>
+                                            @equipo.FechaInstalacion.ToString("dd-MMM-yyyy")
+                                        </td>
+                                        <td>
+                                            @equipo.Pedido
+                                        </td>
+                                        <td>
+                                            @equipo.Documento
+                                        </td>
+                                        <td>
+                                            @equipo.NombreCompleto
+                                        </td>
+                                        <td>
+                                            @equipo.DomicilioInstalacion
+                                        </td>
+                                        <td>
+                                            @equipo.EntreCalles
+                                        </td>
+                                        <td>
+                                            @equipo.TipoInstalacion
+                                        </td>
+                                        <td>
+                                            <a @onclick=@(() => ShowModal()) class="btn btn-sm btn-warning btn-sm">
+                                                <i class="bi bi-pencil-square" />
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="white" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                                                </svg>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </Body>
+                </GenericList>
+                <div class="d-flex justify-content-between align-items-lg-center">
+                    <Pagination CurrentPage="currentPage"
+                                TotalPages="totalPages"
+                                SelectedPage="SelectedPage" />
+                    <p> Total Registros: @totalRegisters</p>
+                </div>
+
+            </div>
+        </div>
+    </div>    
+}
+
+@code {
+    public List<AppInstalacionesEquipo>? Equipos { get; set; }
+    public List<AppInstalacionesEquipo>? EquiposAll { get; set; }
+    
+    HttpResponseWrapper<List<AppInstalacionesEquipo>>? responseHttp;
+    HttpResponseWrapper<int>? responseHttp2;
+    HttpResponseWrapper<int>? responseHttp3;
+    HttpResponseWrapper<List<AppInstalacionesEquipo>>? responseHttp4;
+
+    string url1 = string.Empty;
+    string url2 = string.Empty;
+    string url3 = string.Empty;
+    string url4 = string.Empty;
+
+    private int currentPage = 1;
+    private int totalPages;
+    private int totalRegisters;
+    
+    private bool loading = true;
+
+    [CascadingParameter]
+    IModalService Modal { get; set; } = default!;
+
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public string Page { get; set; } = "";
+
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public string Filter { get; set; } = "";
+
+    //---------------------------------------------------------------------------
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadAsync();
+    }
+
+    //---------------------------------------------------------------------------
+    private async Task SelectedPage(int page)
+    {
+        currentPage = page;
+        await LoadAsync(page);
+    }
+
+    //---------------------------------------------------------------------------
+    private async Task LoadAsync(int page = 1)
+    {
+        loading = true;
+
+        if (!string.IsNullOrWhiteSpace(Page))
+        {
+            page = Convert.ToInt32(Page);
+        }
+
+        if (string.IsNullOrEmpty(Filter))
+        {
+            url1 = $"/api/AppInstalacionesEquipos?page={page}";
+            url2 = $"/api/AppInstalacionesEquipos/totalPages";
+            url3 = $"/api/AppInstalacionesEquipos/totalRegisters";
+            url4 = $"/api/AppInstalacionesEquipos/all";
+        }
+        else
+        {
+            url1 = $"/api/AppInstalacionesEquipos?page={page}&filter={Filter}";
+            url2 = $"/api/AppInstalacionesEquipos/totalPages?filter={Filter}";
+            url3 = $"/api/AppInstalacionesEquipos/totalRegisters?filter={Filter}";
+            url4 = $"/api/AppInstalacionesEquipos/all?filter={Filter}";
+        }
+
+        try
+        {
+            responseHttp = await repository.Get<List<AppInstalacionesEquipo>>(url1);
+            responseHttp2 = await repository.Get<int>(url2);
+            responseHttp3 = await repository.Get<int>(url3);
+            
+            Equipos = responseHttp.Response!;
+            totalPages = responseHttp2.Response!;
+            totalRegisters = responseHttp3.Response!;
+
+            loading = false;            
+        }
+        catch (Exception ex)
+        {
+            loading = false;
+            await swal.FireAsync("Error", ex.Message, SweetAlertIcon.Error);
+        }
+    }
+
+      
+    //---------------------------------------------------------------------------
+    private async Task CleanFilterAsync()
+    {
+        Filter = string.Empty;
+        await ApplyFilterAsync();
+    }
+    
+    //---------------------------------------------------------------------------
+    private async Task ApplyFilterAsync()
+    {
+        int page = 1;
+        await LoadAsync(page);
+        await SelectedPage(page);
+    }
+
+    //---------------------------------------------------------------------------
+    private async Task ShowModal()
+    {
+        
+    }
+}
