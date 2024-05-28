@@ -39,19 +39,19 @@ else
                     </div>
                 </div>
 
-                <GenericList MyList="Customers">
+                <GenericList MyList="Equipos">
                     <Body>
                         <table class="table table-sm table-info table-striped">
                             <thead>
                                 <tr>
                                     <th>Id</th>
                                     <th>Fecha</th>
+                                    <th>Hora</th>
                                     <th>Fecha Instalación</th>
                                     <th>Pedido</th>
                                     <th>Documento</th>
                                     <th>Cliente</th>
                                     <th>Domicilio</th>
-                                    <th>Entre Calles</th>
                                     <th>Tipo Instalación</th>
                                     <th style="width:60px"></th>
                                 </tr>
@@ -64,10 +64,13 @@ else
                                             @equipo.IDRegistro
                                         </td>
                                          <td>
-                                            @equipo.Fecha.ToString("dd-MMM-yyyy")
+                                            @equipo.Fecha.ToString("dd-MM-yyyy")
                                         </td>
                                         <td>
-                                            @equipo.FechaInstalacion.ToString("dd-MMM-yyyy")
+                                            @equipo.Fecha.ToString("HH:mm")
+                                        </td>
+                                        <td>
+                                            @equipo.FechaInstalacion.ToString("dd-MM-yyyy")
                                         </td>
                                         <td>
                                             @equipo.Pedido
@@ -82,13 +85,10 @@ else
                                             @equipo.DomicilioInstalacion
                                         </td>
                                         <td>
-                                            @equipo.EntreCalles
-                                        </td>
-                                        <td>
                                             @equipo.TipoInstalacion
                                         </td>
                                         <td>
-                                            <a @onclick=@(() => ShowModal()) class="btn btn-sm btn-warning btn-sm">
+                                            <a href="/equipos/edit/@equipo.IDRegistro" class="btn btn-sm btn-warning btn-sm">
                                                 <i class="bi bi-pencil-square" />
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="white" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
@@ -185,9 +185,9 @@ else
 
         try
         {
-            responseHttp = await repository.Get<List<AppInstalacionesEquipo>>(url1);
-            responseHttp2 = await repository.Get<int>(url2);
-            responseHttp3 = await repository.Get<int>(url3);
+            responseHttp = await repository.GetAsync<List<AppInstalacionesEquipo>>(url1);
+            responseHttp2 = await repository.GetAsync<int>(url2);
+            responseHttp3 = await repository.GetAsync<int>(url3);
             
             Equipos = responseHttp.Response!;
             totalPages = responseHttp2.Response!;

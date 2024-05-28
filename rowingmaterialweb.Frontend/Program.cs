@@ -1,6 +1,7 @@
 using CurrieTechnologies.Razor.SweetAlert2;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using MudBlazor.Services;
 using rowingmaterialweb.Frontend;
 using rowingmaterialweb.Frontend.Repositories;
 
@@ -14,4 +15,5 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https:/
 
 builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddSweetAlert2();
+builder.Services.AddMudServices();
 await builder.Build().RunAsync();

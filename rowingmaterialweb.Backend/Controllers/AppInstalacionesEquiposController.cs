@@ -83,5 +83,18 @@ namespace rowingmaterialweb.Backend.Controllers
             double count = await queryable.CountAsync();
             return Ok(count);
         }
+
+        //--------------------------------------------------------------------------------------------------------
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult> Get(int id)
+        {
+            var customer = await _context.AppInstalacionesEquipos.FirstOrDefaultAsync(x => x.IDRegistro == id);
+            if (customer is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(customer);
+        }
     }
 }

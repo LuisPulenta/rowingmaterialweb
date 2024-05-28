@@ -9,6 +9,7 @@ namespace rowingmaterialweb.Backend.Data
         {
         }
         public DbSet<AppInstalacionesEquipo> AppInstalacionesEquipos { get; set; }
+        public DbSet<AppInstalacionesEquiposDetalle> AppInstalacionesEquiposDetalles { get; set; }
 
     }
 

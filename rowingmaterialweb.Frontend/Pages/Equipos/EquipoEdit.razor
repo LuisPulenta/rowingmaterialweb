@@ -1,0 +1,12 @@
+﻿@page "/equipos/edit/{Id:int}"
+
+<h3>Instalación</h3>
+
+@if (equipo is null)
+{
+    <Spinner/>
+}
+else
+{
+    <EquipoForm @ref="equipoForm" Equipo="equipo" Equipos="equipos" Photos="photos" OnValidSubmit="EditAsync" ReturnAction="Return" />
+}

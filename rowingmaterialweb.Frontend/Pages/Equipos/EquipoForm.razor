@@ -1,0 +1,179 @@
+﻿<NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
+
+<EditForm EditContext="editContext" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-10">
+                <div class="row g-3 align-items-center">
+                    <div class="col-1 bg-info bg-opacity-25">
+                        <label class="col-form-label fw-bold ">Id:</label>
+                    </div>
+                    <div class="col-1 bg-warning bg-opacity-25">
+                        <label class="col-form-label">@Equipo.IDRegistro</label>
+                    </div>
+                    <div class="col-1 bg-info bg-opacity-25">
+                        <label class="col-form-label fw-bold">Fecha:</label>
+                    </div>
+                    <div class="col-1 bg-warning bg-opacity-25">
+                        <label class="col-form-label">@Equipo.Fecha.ToString("dd/MM/yyyy")</label>
+                    </div>
+                    <div class="col-1 bg-info bg-opacity-25">
+                        <label class="col-form-label fw-bold">Hora:</label>
+                    </div>
+                    <div class="col-1 bg-warning bg-opacity-25">
+                        <label class="col-form-label">@Equipo.Fecha.ToString("HH:mm")</label>
+                    </div>
+                    <div class="col-2 bg-info bg-opacity-25">
+                        <label class="col-form-label fw-bold">Fecha Instalación:</label>
+                    </div>
+                    <div class="col-2 bg-warning bg-opacity-25">
+                        <label class="col-form-label">@Equipo.FechaInstalacion.ToString("MM/dd/yyyy")</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-10">
+                <div class="row g-3 align-items-center">
+                    <div class="col-1 bg-info bg-opacity-25">
+                        <label class="col-form-label fw-bold">Documento:</label>
+                    </div>
+                    <div class="col-1 bg-warning bg-opacity-25">
+                        <label class="col-form-label">@Equipo.Documento</label>
+                    </div>
+                    <div class="col-1 bg-info bg-opacity-25" >
+                        <label class="col-form-label fw-bold">Cliente:</label>
+                    </div>
+                    <div class="col-7 bg-warning bg-opacity-25">
+                        <label class="col-form-label">@Equipo.ApellidoCliente + @Equipo.NombreCliente</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <div class="row g-3 align-items-center">
+                    <div class="col-1 bg-info bg-opacity-25">
+                        <label class="col-form-label fw-bold">Domicilio:</label>
+                    </div>
+                    <div class="col-4 bg-warning bg-opacity-25">
+                        <label class="col-form-label">@Equipo.DomicilioInstalacion</label>
+                    </div>
+                    <div class="col-1 bg-info bg-opacity-25">
+                        <label class="col-form-label fw-bold">Ent.calles:</label>
+                    </div>
+                    <div class="col-4 bg-warning bg-opacity-25">
+                        <label class="col-form-label">@Equipo.EntreCalles</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+                <div class="row g-3 align-items-center">
+                    <div class="col-1 bg-info bg-opacity-25">
+                        <label class="col-form-label fw-bold">Pedido:</label>
+                    </div>
+                    <div class="col-2 bg-warning bg-opacity-25">
+                        <label class="col-form-label">@Equipo.Pedido</label>
+                    </div>
+                    <div class="col-1 bg-info bg-opacity-25">
+                        <label class="col-form-label fw-bold">Tipo Instal.:</label>
+                    </div>
+                    <div class="col-2 bg-warning bg-opacity-25">
+                        <label class="col-form-label">@Equipo.TipoInstalacion</label>
+                    </div>
+                    <div class="col-1 bg-info bg-opacity-25">
+                        <label class="col-form-label fw-bold">Es Avería:</label>
+                    </div>
+                    <div class="col-1 bg-warning bg-opacity-25">
+                        <label class="col-form-label">@Equipo.EsAveria</label>
+                    </div>
+                    <div class="col-1 bg-info bg-opacity-25">
+                        <label class="col-form-label fw-bold">Auditado:</label>
+                    </div>
+                    <div class="col-1 bg-warning bg-opacity-25">
+                        <label class="col-form-label">@Equipo.Auditado</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br/>
+
+    <GenericList MyList="Equipos">
+        <Body>
+            <table class="table table-sm table-info table-striped">
+                <thead>
+                    <tr>
+                        <th>N° Serie</th>
+                        <th>Cod. Siag</th>
+                        <th>Cod. Sap</th>
+                        <th>Nombre Equipo</th>
+                        <th>Foto</th>
+                        <th style="width:60px"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var equipo in Equipos!)
+                    {
+                        <tr>
+                            <td>
+                                @equipo.NROSERIEINSTALADA
+                            </td>
+                            <td>
+                                @equipo.CODSIAG
+                            </td>
+                            <td>
+                                @equipo.CODSAP
+                            </td>
+                            <td>
+                                @equipo.NombreEquipo
+                            </td>
+                            @if (@equipo.LinkFotoFullPath == null || @equipo.LinkFotoFullPath == "" || @equipo.LinkFotoFullPath == string.Empty)
+                            {
+                                <td></td>
+                            }
+                            else
+
+                            {
+                                <td><img src="@equipo.LinkFotoFullPath" width="80" /></td>
+                            }
+                            <td>
+                                <a href="/equipos/edit/@equipo.IDDETALLE" class="btn btn-sm btn-warning btn-sm">
+                                    <i class="bi bi-pencil-square" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="white" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                                    </svg>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </Body>
+    </GenericList>
+
+
+
+
+
+    @if (Photos is not null)
+    {
+        <CarouselView Images="Photos" />
+    }
+
+  
+
+
+</EditForm>
+
+
