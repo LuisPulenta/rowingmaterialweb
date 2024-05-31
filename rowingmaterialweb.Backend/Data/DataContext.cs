@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using rowingmaterialweb.Shared.Entities;
+using static AppInstalacionesEquiposDetalle;
 
 namespace rowingmaterialweb.Backend.Data
 {
@@ -10,7 +11,6 @@ namespace rowingmaterialweb.Backend.Data
         }
         public DbSet<AppInstalacionesEquipo> AppInstalacionesEquipos { get; set; }
         public DbSet<AppInstalacionesEquiposDetalle> AppInstalacionesEquiposDetalles { get; set; }
-
+        public DbSet<VistaAppInstalacionesEquipo> VistaAppInstalacionesEquipos { get; set; }
     }
-
 }

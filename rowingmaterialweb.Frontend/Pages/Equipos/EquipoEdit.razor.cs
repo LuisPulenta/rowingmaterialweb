@@ -68,25 +68,25 @@ namespace rowingmaterialweb.Frontend.Pages.Equipos
 
         private async Task EditAsync()
         {
-            var responseHTTP = await Repository.PutAsync("api/appinstalacionesequipos", equipo);
+            //var responseHTTP = await Repository.PutAsync("api/appinstalacionesequipos", equipo);
 
-            if (responseHTTP.Error)
-            {
-                var mensajeError = await responseHTTP.GetErrorMessageAsync();
-                await SweetAlertService.FireAsync("Error", mensajeError, SweetAlertIcon.Error);
-                return;
-            }
+            //if (responseHTTP.Error)
+            //{
+            //    var mensajeError = await responseHTTP.GetErrorMessageAsync();
+            //    await SweetAlertService.FireAsync("Error", mensajeError, SweetAlertIcon.Error);
+            //    return;
+            //}
 
-            Return();
-            var toast = SweetAlertService.Mixin(new SweetAlertOptions
-            {
-                Toast = true,
-                Position = SweetAlertPosition.Center,
-                ShowConfirmButton = true,
-                Timer = 3000,
-                Background = "LightSkyBlue",
-            });
-            await toast.FireAsync(icon: SweetAlertIcon.Success, message: "Cambios guardados con éxito.");
+            //Return();
+            //var toast = SweetAlertService.Mixin(new SweetAlertOptions
+            //{
+            //    Toast = true,
+            //    Position = SweetAlertPosition.Center,
+            //    ShowConfirmButton = true,
+            //    Timer = 3000,
+            //    Background = "LightSkyBlue",
+            //});
+            //await toast.FireAsync(icon: SweetAlertIcon.Success, message: "Cambios guardados con éxito.");
         }
 
 
