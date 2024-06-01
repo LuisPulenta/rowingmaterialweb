@@ -1,11 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-public class AppInstalacionesEquiposDetalle
+namespace rowingmaterialweb.Shared.Entities
 {
     public class VistaAppInstalacionesEquipo
     {
-        [Key]
         [Key]
         public int IDRegistro { get; set; }
 
@@ -68,5 +67,8 @@ public class AppInstalacionesEquiposDetalle
         public string FirmaclienteImageFullPath => string.IsNullOrEmpty(Firmacliente)
      ? $"http://190.111.249.225/RowingAppApi/images/Instalaciones/noimage.png"
      : $"http://190.111.249.225/RowingAppApi{Firmacliente.Substring(1)}";
+
+        public string NombreCompleto => $"{ApellidoCliente} {NombreCliente}";
+        public string PedidoCompleto => $"{TipoPedido}{Pedido}";
     }
 }

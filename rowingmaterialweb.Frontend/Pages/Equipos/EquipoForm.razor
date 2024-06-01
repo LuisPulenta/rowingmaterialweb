@@ -27,11 +27,17 @@
                     <div class="col-1 bg-warning bg-opacity-25">
                         <label class="col-form-label">@Equipo.Fecha.ToString("HH:mm")</label>
                     </div>
-                    <div class="col-2 bg-info bg-opacity-25">
-                        <label class="col-form-label fw-bold">Fecha Instalación:</label>
+                    <div class="col-1 bg-info bg-opacity-25">
+                        <label class="col-form-label fw-bold">Fec. Instal.:</label>
                     </div>
-                    <div class="col-2 bg-warning bg-opacity-25">
+                    <div class="col-1 bg-warning bg-opacity-25">
                         <label class="col-form-label">@Equipo.FechaInstalacion.ToString("MM/dd/yyyy")</label>
+                    </div>
+                    <div class="col-1 bg-info bg-opacity-25">
+                        <label class="col-form-label fw-bold">Causante:</label>
+                    </div>
+                    <div class="col-3 bg-warning bg-opacity-25">
+                        <label class="col-form-label">@Equipo.NombreCausante</label>
                     </div>
                 </div>
             </div>
@@ -59,8 +65,8 @@
                     <div class="col-1 bg-info bg-opacity-25">
                         <label class="col-form-label fw-bold">Cliente:</label>
                     </div>
-                    <div class="col-7 bg-warning bg-opacity-25">
-                        <label class="col-form-label">@Equipo.ApellidoCliente + @Equipo.NombreCliente</label>
+                    <div class="col-6 bg-warning bg-opacity-25">
+                        <label class="col-form-label">@Equipo.NombreCompleto</label>
                     </div>
                 </div>
             </div>
@@ -101,7 +107,7 @@
                         <label class="col-form-label fw-bold">Pedido:</label>
                     </div>
                     <div class="col-2 bg-warning bg-opacity-25">
-                        <label class="col-form-label">@Equipo.Pedido</label>
+                        <label class="col-form-label">@Equipo.PedidoCompleto</label>
                     </div>
                     <div class="col-1 bg-info bg-opacity-25">
                         <label class="col-form-label fw-bold">Tipo Instal.:</label>
@@ -198,7 +204,7 @@
     private EditContext editContext = null!;
     private String nombreArchivo = string.Empty;
 
-    [EditorRequired, Parameter] public AppInstalacionesEquipo Equipo { get; set; } = null!;
+    [EditorRequired, Parameter] public VistaAppInstalacionesEquipo Equipo { get; set; } = null!;
     [EditorRequired, Parameter] public List<AppInstalacionesEquiposDetalle> Equipos { get; set; } = null!;
     [EditorRequired, Parameter] public List<string> Photos { get; set; } = null!;
     [EditorRequired, Parameter] public EventCallback OnValidSubmit { get; set; }
@@ -242,10 +248,13 @@
     private async Task GenerarPdf() 
     {
         nombreArchivo = $"Instalación {Equipo.IDRegistro}.pdf";
-        await JS.InvokeVoidAsync("GenerarPDF", nombreArchivo, Equipo.NombreCompleto, Equipo.Documento);
+        await JS.InvokeVoidAsync("GenerarPDF", 
+            nombreArchivo, 
+            Equipo.NombreCompleto, 
+            Equipo.NombreCausante,
+            Equipo.Documento,
+            $"{Equipo.DomicilioInstalacion}-{Equipo.Latitud}-{Equipo.Longitud}",
+            Equipo.FechaInstalacion
+            );
         }
-
-    
 }
-
-

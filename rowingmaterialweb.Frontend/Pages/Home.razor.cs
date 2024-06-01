@@ -5,14 +5,34 @@ using iText.Kernel.Pdf.Canvas.Draw;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
+using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
+using rowingmaterialweb.Frontend.Repositories;
 
 namespace rowingmaterialweb.Frontend.Pages
 {
     public partial class Home
-    { 
-    
-    
-    private static void CrearPdf()
+    {
+        [Inject] private IJSRuntime JS { get; set; } = null!;
+
+        private async Task CrearPdf()
+        {
+            
+            await JS.InvokeVoidAsync("GenerarPDF",
+                "prueba.pdf",
+                "Luis Núñez",
+                "Gonzalo Prieto",
+                "17157729",
+                "Espora 2052 - Lat:-31.123456 - Long:-64.345645",
+                "2024-06-01 12:54:22"
+                
+
+    // Equipo.Latitud,
+    // Equipo.Longitud
+    );
+        }
+
+        private static void CrearPdf2()
         {
             // Must have write permissions to the path folder
             PdfWriter writer = new PdfWriter("D:\\pdf\\demo.pdf");

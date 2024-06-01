@@ -58,6 +58,10 @@ namespace rowingmaterialweb.Shared.Entities
 
         public int Auditado { get; set; }
 
+        public string DocumentoFirmante { get; set; } = null!;
+        public int? MismoFirmante { get; set; }
+        public string TipoPedido { get; set; } = null!;
+
         public string FirmaclienteImageFullPath => string.IsNullOrEmpty(Firmacliente)
      ? $"http://190.111.249.225/RowingAppApi/images/Instalaciones/noimage.png"
      : $"http://190.111.249.225/RowingAppApi{Firmacliente.Substring(1)}";

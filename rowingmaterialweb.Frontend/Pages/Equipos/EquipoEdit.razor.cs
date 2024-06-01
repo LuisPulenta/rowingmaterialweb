@@ -8,7 +8,7 @@ namespace rowingmaterialweb.Frontend.Pages.Equipos
 {
     public partial class EquipoEdit
     {
-        private AppInstalacionesEquipo? equipo;
+        private VistaAppInstalacionesEquipo? equipo;
         private List<AppInstalacionesEquiposDetalle>? equipos;
         public List<string> photos = [];
         private EquipoForm? equipoForm;
@@ -20,7 +20,7 @@ namespace rowingmaterialweb.Frontend.Pages.Equipos
 
         protected override async Task OnParametersSetAsync()
         {
-            var responseHttp = await Repository.GetAsync<AppInstalacionesEquipo>($"api/appinstalacionesequipos/{Id}");
+            var responseHttp = await Repository.GetAsync<VistaAppInstalacionesEquipo>($"api/appinstalacionesequipos/{Id}");
 
             if (responseHttp.Error)
             {

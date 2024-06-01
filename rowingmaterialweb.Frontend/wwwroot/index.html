@@ -46,22 +46,42 @@
     <script src="js/PdfInstalacion.js"></script>
 
     <script>
-        window.GenerarPDF = async (nombrearchivo, cliente, documento) => {
+        window.GenerarPDF = async (nombrearchivo, cliente, nombrecausante, documento, domicilio, fechainstalacion) => {
             var pdf = new jsPDF();
             
-            var img = new Image()
-            img.src = 'img/logomovistar.jpg'
-            pdf.addImage(img, 'jpg', 20, 10,170,17)
+            //var img = new Image()
+            //img.src = 'img/logomovistar.jpg'
+            //pdf.addImage(img, 'jpg', 20, 10,170,17)
 
             pdf.setFontSize(14);
+
             pdf.setFontStyle('bold');
             pdf.text(20, 40, 'Nombre y Apellido: ');
             pdf.setFontStyle('normal');
-            pdf.text(70, 40, cliente);
+            pdf.text(70, 40, nombrecausante);
 
             pdf.setFontSize(10);
+
+            pdf.setFontStyle('bold');
+            pdf.text(20, 60, 'Nombre y Apellido: ');
             pdf.setFontStyle('normal');
-            pdf.text(30, 90, 'Documento: ' + documento);
+            pdf.text(70, 60, cliente);
+
+            pdf.setFontStyle('bold');
+            pdf.text(20, 80, 'Documento: ');
+            pdf.setFontStyle('normal');
+            pdf.text(70, 80, documento);
+
+            pdf.setFontStyle('bold');
+            pdf.text(20, 100, 'Fecha Instal.: ');
+            pdf.setFontStyle('normal');
+            pdf.text(70, 100, fechainstalacion);
+
+            pdf.setFontStyle('bold');
+            pdf.text(20, 120, 'domicilio: ');
+            pdf.setFontStyle('normal');
+            pdf.text(70, 120, domicilio);
+
             pdf.save(nombrearchivo);
         }
     </script>

@@ -88,7 +88,7 @@ namespace rowingmaterialweb.Backend.Controllers
         [HttpGet("{id:int}")]
         public async Task<ActionResult> Get(int id)
         {
-            var customer = await _context.AppInstalacionesEquipos.FirstOrDefaultAsync(x => x.IDRegistro == id);
+            var customer = await _context.VistaAppInstalacionesEquipos.FirstOrDefaultAsync(x => x.IDRegistro == id);
             if (customer is null)
             {
                 return NotFound();

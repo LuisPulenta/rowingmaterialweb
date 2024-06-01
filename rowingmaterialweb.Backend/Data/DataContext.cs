@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using rowingmaterialweb.Shared.Entities;
-using static AppInstalacionesEquiposDetalle;
 
 namespace rowingmaterialweb.Backend.Data
 {
