@@ -45,59 +45,67 @@
 
     <script src="js/PdfInstalacion.js"></script>
 
+    <script type="text/javascript" src="js/jspdf.min.js"></script>
+
     <script>
         window.GenerarPDF = async (nombrearchivo, cliente, nombrecausante, documento, domicilio, fechainstalacion) => {
             var pdf = new jsPDF();
-            
-            var img = new Image()
-            img.src = 'img/logomovistar.png'
-            pdf.addImage(img, 'png', 20, 10,170,17)
-
-            var img2 = new Image()
-            img.src = 'img/recibido.png'
-            pdf.addImage(img2, 'png', 20, 100, 70, 17)
-
-            var img3 = new Image()
-            img.src = 'img/domicilio.png'
-            pdf.addImage(img3, 'png', 20, 200, 70, 17)
-
-
-            pdf.setFontSize(14);
-
-            pdf.setFontStyle('bold');
-            pdf.text(20, 40, 'Nombre y Apellido: ');
-            pdf.setFontStyle('normal');
-            pdf.text(70, 40, nombrecausante);
 
             pdf.setFontSize(10);
 
             pdf.setFontStyle('bold');
-            pdf.text(20, 60, 'Nombre y Apellido: ');
+            pdf.text(20, 40, 'Nombre y Apellido: ');
             pdf.setFontStyle('normal');
-            pdf.text(70, 60, cliente);
+            pdf.text(55, 40, nombrecausante);
 
             pdf.setFontStyle('bold');
-            pdf.text(20, 80, 'Documento: ');
+            pdf.text(120, 40, 'Fecha Instal.: ');
             pdf.setFontStyle('normal');
-            pdf.text(70, 80, documento);
+            pdf.text(145, 40, fechainstalacion);
 
             pdf.setFontStyle('bold');
-            pdf.text(20, 100, 'Fecha Instal.: ');
+            pdf.text(20, 46, 'Número de Pedido: ');
             pdf.setFontStyle('normal');
-            pdf.text(70, 100, fechainstalacion);
+            pdf.text(55, 46, 'OMS1234567890');
 
             pdf.setFontStyle('bold');
-            pdf.text(20, 120, 'domicilio: ');
+            pdf.text(20, 66, 'Nombre y Apellido: ');
             pdf.setFontStyle('normal');
-            pdf.text(70, 120, domicilio);
+            pdf.text(55, 66, cliente);
 
-            pdf.save(nombrearchivo);
+            pdf.setFontStyle('bold');
+            pdf.text(120, 66, 'Documento: ');
+            pdf.setFontStyle('normal');
+            pdf.text(145, 66, documento);
+                        
+            pdf.setFontStyle('bold');
+            pdf.text(20, 82, 'Domicilio: ');
+            pdf.setFontStyle('normal');
+            pdf.text(55, 82, domicilio);
+
+            var img = new Image()
+            var img2 = new Image()
+            var img3 = new Image()
+            img.src = 'img/logomovistar.jpg'
+            img2.src = 'img/recibido.jpg'
+            img3.src = 'img/domicilio.jpg'
+
+            img.onload = function () {
+                pdf.addImage(img, 'jpg', 20, 10, 170, 17)
+                img2.onload = function () {
+                    pdf.addImage(img2, 'jpg', 20, 50, 40, 10)
+                    img3.onload = function () {
+                        pdf.addImage(img3, 'jpg', 20, 70, 50, 6)
+                        pdf.save(nombrearchivo);
+                    };
+                };
+            };       
         }
     </script>
 
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+    <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>-->
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>

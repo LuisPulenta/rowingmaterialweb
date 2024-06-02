@@ -143,7 +143,7 @@
                         <th>Cod. Siag</th>
                         <th>Cod. Sap</th>
                         <th>Nombre Equipo</th>
-                        <th>Foto</th>
+                       @*  <th>Foto</th> *@
                         <th style="width:60px"></th>
                     </tr>
                 </thead>
@@ -163,7 +163,7 @@
                             <td>
                                 @equipo.NombreEquipo
                             </td>
-                            @if (@equipo.LinkFotoFullPath == null || @equipo.LinkFotoFullPath == "" || @equipo.LinkFotoFullPath == string.Empty)
+                          @*   @if (@equipo.LinkFotoFullPath == null || @equipo.LinkFotoFullPath == "" || @equipo.LinkFotoFullPath == string.Empty)
                             {
                                 <td></td>
                             }
@@ -171,7 +171,7 @@
 
                             {
                                 <td><img src="@equipo.LinkFotoFullPath" width="80" /></td>
-                            }
+                            } *@
                             <td>
                                 <a href="/equipos/edit/@equipo.IDDETALLE" class="btn btn-sm btn-warning btn-sm">
                                     <i class="bi bi-pencil-square" />
@@ -191,11 +191,11 @@
 
 
 
-
+@* 
     @if (Photos is not null)
     {
         <CarouselView Images="Photos" />
-    }
+    } *@
 
 </EditForm>
 
