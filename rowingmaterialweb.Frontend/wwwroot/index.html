@@ -49,9 +49,18 @@
         window.GenerarPDF = async (nombrearchivo, cliente, nombrecausante, documento, domicilio, fechainstalacion) => {
             var pdf = new jsPDF();
             
-            //var img = new Image()
-            //img.src = 'img/logomovistar.jpg'
-            //pdf.addImage(img, 'jpg', 20, 10,170,17)
+            var img = new Image()
+            img.src = 'img/logomovistar.png'
+            pdf.addImage(img, 'png', 20, 10,170,17)
+
+            var img2 = new Image()
+            img.src = 'img/recibido.png'
+            pdf.addImage(img2, 'png', 20, 100, 70, 17)
+
+            var img3 = new Image()
+            img.src = 'img/domicilio.png'
+            pdf.addImage(img3, 'png', 20, 200, 70, 17)
+
 
             pdf.setFontSize(14);
 
