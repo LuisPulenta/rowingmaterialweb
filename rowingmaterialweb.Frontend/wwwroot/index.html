@@ -48,7 +48,7 @@
     <script type="text/javascript" src="js/jspdf.min.js"></script>
 
     <script>
-        window.GenerarPDF = async (nombrearchivo, cliente, nombrecausante, documento, domicilio, fechainstalacion) => {
+        window.GenerarPDF = async (nombrearchivo, cliente, nombrecausante, documento, domicilio, fechainstalacion,pedido) => {
             var pdf = new jsPDF();
 
             pdf.setFontSize(10);
@@ -66,7 +66,7 @@
             pdf.setFontStyle('bold');
             pdf.text(20, 46, 'Número de Pedido: ');
             pdf.setFontStyle('normal');
-            pdf.text(55, 46, 'OMS1234567890');
+            pdf.text(55, 46, pedido);
 
             pdf.setFontStyle('bold');
             pdf.text(20, 66, 'Nombre y Apellido: ');
@@ -79,9 +79,14 @@
             pdf.text(145, 66, documento);
                         
             pdf.setFontStyle('bold');
-            pdf.text(20, 82, 'Domicilio: ');
+            pdf.text(20, 82, 'Calle: ');
             pdf.setFontStyle('normal');
-            pdf.text(55, 82, domicilio);
+            pdf.text(32, 82, domicilio);
+
+            pdf.setFontStyle('bold');
+            pdf.text(65, 60, 'ID del Cliente: ');
+            pdf.setFontStyle('normal');
+            pdf.text(90, 60, '88888888');
 
             var img = new Image()
             var img2 = new Image()

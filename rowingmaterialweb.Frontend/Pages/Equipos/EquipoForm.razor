@@ -250,11 +250,12 @@
         nombreArchivo = $"Instalación {Equipo.IDRegistro}.pdf";
         await JS.InvokeVoidAsync("GenerarPDF", 
             nombreArchivo, 
-            Equipo.NombreCompleto, 
-            Equipo.NombreCausante,
+            Equipo.NombreCompleto.ToUpper(), 
+            Equipo.NombreCausante.ToUpper(),
             Equipo.Documento,
-            $"{Equipo.DomicilioInstalacion}-{Equipo.Latitud}-{Equipo.Longitud}",
-            Equipo.FechaInstalacion
+            $"{Equipo.DomicilioInstalacion.ToUpper()} - CORX: {Equipo.Latitud} - CORY: {Equipo.Longitud}",
+            Equipo.FechaInstalacion.ToString("dd/MM/yyyy"),
+            $"{Equipo.TipoPedido}{Equipo.Pedido}"
             );
         }
 }
