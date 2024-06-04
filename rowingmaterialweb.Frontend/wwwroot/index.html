@@ -48,7 +48,7 @@
     <script type="text/javascript" src="js/jspdf.min.js"></script>
 
     <script>
-        window.GenerarPDF = async (nombrearchivo, cliente, nombrecausante, documento, domicilio, fechainstalacion,pedido) => {
+        window.GenerarPDF = async (nombrearchivo, cliente, nombrecausante, documento, domicilio, fechainstalacion,pedido,foto1) => {
             var pdf = new jsPDF();
 
             pdf.setFontSize(10);
@@ -91,9 +91,14 @@
             var img = new Image()
             var img2 = new Image()
             var img3 = new Image()
+            var img4 = new Image()
+
             img.src = 'img/logomovistar.jpg'
             img2.src = 'img/recibido.jpg'
             img3.src = 'img/domicilio.jpg'
+            img4.src = foto1
+
+            pdf.addImage(img4, 'jpg', 20, 100)
 
             img.onload = function () {
                 pdf.addImage(img, 'jpg', 20, 10, 170, 17)
